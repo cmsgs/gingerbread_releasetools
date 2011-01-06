@@ -1,13 +1,18 @@
+ui_print("Welcome to CyanogenMod-7.0.0-GalaxyS");
 assert(getprop("ro.product.device") == "galaxys" ||
        getprop("ro.build.product") == "galaxys");
+ui_print("Backing up Gapps...");
 package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
 set_perm(0, 0, 0777, "/tmp/backuptool.sh");
 run_program("/tmp/backuptool.sh", "backup");
 show_progress(0.500000, 0);
+ui_print("Formating system...");
 format("yaffs2", "MTD", "system");
 mount("yaffs2", "MTD", "system", "/system");
+ui_print("Installing system...");
 package_extract_dir("recovery", "/system");
 package_extract_dir("system", "/system");
+ui_print("Creating symlinks...");
 symlink("busybox", "/system/xbin/[", "/system/xbin/[[",
         "/system/xbin/arp", "/system/xbin/ash", "/system/xbin/awk",
         "/system/xbin/basename", "/system/xbin/bbconfig", "/system/xbin/brctl",
@@ -83,6 +88,7 @@ symlink("toolbox", "/system/bin/cat", "/system/bin/cmp",
         "/system/bin/sync", "/system/bin/top", "/system/bin/uptime",
         "/system/bin/vmstat", "/system/bin/watchprops",
         "/system/bin/wipe");
+ui_print("Setting permissions...");
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
@@ -116,12 +122,15 @@ set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm(0, 0, 06755, "/system/xbin/tcpdump");
 show_progress(0.200000, 0);
 show_progress(0.200000, 10);
+ui_print("Restoring Gapps...");
 package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
 set_perm(0, 0, 0777, "/tmp/backuptool.sh");
 run_program("/tmp/backuptool.sh", "restore");
 show_progress(0.200000, 10);
+ui_print("Flashing kernel...");
 assert(package_extract_file("zImage", "/tmp/zImage"),
        write_raw_image("/tmp/zImage", "boot"),
        delete("/tmp/zImage"));
 show_progress(0.100000, 0);
 unmount("/system");
+ui_print("Done.");

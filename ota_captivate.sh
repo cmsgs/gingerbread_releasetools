@@ -1,6 +1,6 @@
 #/bin/bash 
 
-PRODUCT="galaxys"
+PRODUCT="captivate"
 OUTDIR="../out/target/product/$PRODUCT"
 
 rm -rf temp/

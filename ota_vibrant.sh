@@ -1,6 +1,6 @@
 #/bin/bash 
 
-PRODUCT="galaxys"
+PRODUCT="vibrant"
 OUTDIR="../out/target/product/$PRODUCT"
 
 rm -rf temp/
