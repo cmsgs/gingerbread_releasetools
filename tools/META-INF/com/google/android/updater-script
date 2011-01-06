@@ -127,6 +127,12 @@ package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
 set_perm(0, 0, 0777, "/tmp/backuptool.sh");
 run_program("/tmp/backuptool.sh", "restore");
 show_progress(0.200000, 10);
+
+# START: copy su
+package_extract_file("system/xbin/su", "/system/xbin/su");
+set_perm(0, 0, 06755, "/system/xbin/su");
+# END: copy su
+
 ui_print("Flashing kernel...");
 assert(package_extract_file("zImage", "/tmp/zImage"),
        write_raw_image("/tmp/zImage", "boot"),
