@@ -1,0 +1,18 @@
+ui_print("EFS BACKUP TOOL");
+
+# we must have internal sdcard mounted to host backups
+mount("vfat", "/dev/block/mmcblk0p1", "/mnt/sdcard");
+assert(is_mounted("/mnt/sdcard"));
+
+# mount efs
+mount("rfs", "/dev/block/stl3", "/efs");
+assert(is_mounted("/efs"));
+
+# START: backup efs
+package_extract_file("efsbackup.sh", "/tmp/efsbackup.sh");
+set_perm(0, 0, 0777, "/tmp/efsbackup.sh");
+run_program("/tmp/efsbackup.sh", "backup");
+# END: backup efs
+
+ui_print("Done");
+
