@@ -7,6 +7,6 @@
 mkdir /mnt/sdcard/backup
 mkdir /mnt/sdcard/backup/efs
 
-cp -R /efs/ /mnt/sdcard/backup/efs
+cp -R /efs/ /mnt/sdcard/backup
 
 exit
