@@ -1,11 +1,18 @@
 ui_print("Welcome to CyanogenMod-7.0.0-GalaxyS");
 
-# START: format system
-show_progress(0.100000, 10);
-ui_print("Formating system...");
+# START: format
+show_progress(0.200000, 20);
+ui_print("Formating partitions...");
+
 format("yaffs2", "MTD", "system");
 mount("yaffs2", "MTD", "system", "/system");
-# END: format system
+
+format("yaffs2", "MTD", "cache");
+format("yaffs2", "MTD", "userdata");
+
+format("yaffs2", "MTD", "efs");
+mount("yaffs2", "MTD", "efs", "/efs");
+# END: format
 
 # START: install system
 show_progress(0.300000, 40);
@@ -142,13 +149,6 @@ assert(package_extract_file("modem.bin", "/tmp/modem.bin"),
        write_raw_image("/tmp/modem.bin", "modem"),
        delete("/tmp/modem.bin"));
 # END: flash radio
-
-# START: format efs
-show_progress(0.100000, 10);
-ui_print("Formating efs...");
-format("yaffs2", "MTD", "efs");
-mount("yaffs2", "MTD", "efs", "/efs");
-# END: format efs
 
 # START: restore efs
 show_progress(0.100000, 10);
