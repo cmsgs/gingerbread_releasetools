@@ -157,5 +157,5 @@ assert(copy_dir("/sdcard/backup/efs/", "/efs"));
 # END: restore efs
 
 unmount("/system");
-unmount("/efs")
+unmount("/efs");
 ui_print("Done.");
