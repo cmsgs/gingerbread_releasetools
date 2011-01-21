@@ -152,7 +152,6 @@ assert(package_extract_file("modem.bin", "/tmp/modem.bin"),
 show_progress(0.100000, 10);
 ui_print("Restoring efs...");
 mount("yaffs2", "MTD", "efs", "/efs");
-mount("vfat", "/dev/block/mmcblk0p1", "/sdcard");
 assert(is_mounted("/efs"));
 assert(is_mounted("/sdcard"));
 assert(package_extract_file("efsrestore.sh", "/tmp/efsrestore.sh"), 
