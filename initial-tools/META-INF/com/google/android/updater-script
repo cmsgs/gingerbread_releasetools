@@ -154,9 +154,9 @@ ui_print("Restoring efs...");
 mount("yaffs2", "MTD", "efs", "/efs");
 assert(is_mounted("/efs"));
 assert(is_mounted("/sdcard"));
-assert(package_extract_file("efsrestore.sh", "/tmp/efsrestore.sh"), 
-set_perm(0, 0, 0777, "/tmp/efsrestore.sh"),
-run_program("/tmp/efsrestore.sh", "restore"));
+package_extract_file("efsrestore.sh", "/tmp/efsrestore.sh");
+set_perm(0, 0, 0777, "/tmp/efsrestore.sh");
+run_program("/tmp/efsrestore.sh", "restore");
 # END: restore efs
 
 unmount("/system");
