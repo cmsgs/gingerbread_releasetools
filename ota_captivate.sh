@@ -3,6 +3,8 @@
 PRODUCT="captivate"
 OUTDIR="../out/target/product/$PRODUCT"
 
+NOW=$(date +"%Y%m%d")
+
 rm -rf temp/
 mkdir temp
 mkdir temp/system
@@ -24,13 +26,13 @@ find temp/ -name '.git' -exec rm -r {} \;
 
 echo "Compressing otapackage ..."
 pushd temp
-zip -r ../$OUTDIR/cyanogenmod7-$PRODUCT-unsigned.zip ./
+zip -r ../$OUTDIR/cm7-$PRODUCT-update-unsigned.zip ./
 popd
 
 echo "Signing otapackage ..."
-java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cyanogenmod7-$PRODUCT-unsigned.zip $OUTDIR/cyanogenmod7-$PRODUCT.zip
+java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cm7-$PRODUCT-update-unsigned.zip $OUTDIR/cm7-$PRODUCT-update-$NOW.zip
 
-rm $OUTDIR/cyanogenmod7-$PRODUCT-unsigned.zip
+rm $OUTDIR/cyanogenmod7-$PRODUCT-update-unsigned.zip
 rm -rf temp/
 echo "cyanogenmod7-$PRODUCT.zip is at $OUTDIR"
 echo "Done."

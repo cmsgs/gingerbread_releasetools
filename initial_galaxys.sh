@@ -3,6 +3,8 @@
 PRODUCT="galaxys"
 OUTDIR="../out/target/product/$PRODUCT"
 
+NOW=$(date +"%Y%m%d")
+
 rm -rf temp/
 mkdir temp
 mkdir temp/system
@@ -11,7 +13,7 @@ echo "Copying /system ..."
 cp -R $OUTDIR/system/ temp/
 
 echo "Copying tools for otapackage ..."
-cp -R initial-tools/* temp/
+cp -R initial-tools/$PRODUCT/* temp/
 
 echo "Copying zImage ..."
 cp ../kernel/samsung/2.6.35/arch/arm/boot/zImage temp/zImage
@@ -24,13 +26,13 @@ find temp/ -name '.git' -exec rm -r {} \;
 
 echo "Compressing otapackage ..."
 pushd temp
-zip -r ../$OUTDIR/cyanogenmod7-$PRODUCT-initial-unsigned.zip ./
+zip -r ../$OUTDIR/cm7-$PRODUCT-initial-unsigned.zip ./
 popd
 
 echo "Signing otapackage ..."
-java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cyanogenmod7-$PRODUCT-initial-unsigned.zip $OUTDIR/cyanogenmod7-$PRODUCT-initial.zip
+java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cm7-$PRODUCT-initial-unsigned.zip $OUTDIR/cm7-$PRODUCT-initial-$NOW.zip
 
-rm $OUTDIR/cyanogenmod7-$PRODUCT-initial-unsigned.zip
+rm $OUTDIR/cm7-$PRODUCT-initial-unsigned.zip
 rm -rf temp/
 echo "cyanogenmod7-$PRODUCT.zip is at $OUTDIR"
 echo "Done."
