@@ -32,7 +32,7 @@ popd
 echo "Signing otapackage ..."
 java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cm7-$PRODUCT-update-unsigned.zip $OUTDIR/cm7-$PRODUCT-update-$NOW.zip
 
-rm $OUTDIR/cyanogenmod7-$PRODUCT-update-unsigned.zip
+rm $OUTDIR/cm7-$PRODUCT-update-unsigned.zip
 rm -rf temp/
-echo "cm7-$PRODUCT.zip is at $OUTDIR"
+echo "cm7-$PRODUCT-update-$NOW is at $OUTDIR"
 echo "Done."

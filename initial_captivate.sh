@@ -34,5 +34,5 @@ java -jar SignApk/signapk.jar SignApk/certificate.pem SignApk/key.pk8 $OUTDIR/cm
 
 rm $OUTDIR/cm7-$PRODUCT-initial-unsigned.zip
 rm -rf temp/
-echo "cyanogenmod7-$PRODUCT.zip is at $OUTDIR"
+echo "cm7-$PRODUCT-initial-$NOW.zip is at $OUTDIR"
 echo "Done."
