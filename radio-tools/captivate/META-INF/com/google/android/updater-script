@@ -1,0 +1,11 @@
+ui_print("Welcome to CyanogenMod-7.0.0-GalaxyS");
+
+# START: flash radio
+show_progress(0.200000, 10);
+ui_print("Flashing radio image...");
+assert(package_extract_file("modem.bin", "/tmp/modem.bin"),
+       write_raw_image("/tmp/modem.bin", "radio"),
+       delete("/tmp/modem.bin"));
+# END: flash radio
+
+ui_print("Done.");
