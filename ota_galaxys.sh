@@ -13,13 +13,15 @@ echo "Copying /system ..."
 cp -R $OUTDIR/system/ temp/
 
 echo "Copying tools for otapackage ..."
-cp -R tools/* temp/
+cp -R tools/$PRODUCT/* temp/
 
 echo "Copying zImage ..."
 cp ../kernel/samsung/2.6.35/arch/arm/boot/zImage temp/zImage
 
 echo "Copying kernel modules ..."
 cp -R ../kernel/samsung/2.6.35/drivers/net/wireless/bcm4329/bcm4329.ko temp/system/modules/
+cp -R ../kernel/samsung/2.6.35/drivers/net/tun.ko temp/system/modules/
+cp -R ../kernel/samsung/2.6.35/fs/cifs/cifs.ko temp/system/modules/
 
 echo "Removing .git files"
 find temp/ -name '.git' -exec rm -r {} \;

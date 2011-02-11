@@ -13,7 +13,7 @@ echo "Copying /system ..."
 cp -R $OUTDIR/system/ temp/
 
 echo "Copying tools for otapackage ..."
-cp -R model/captivate/tools/* temp/
+cp -R tools/captivate/* temp/
 
 echo "Copying zImage ..."
 cp ../kernel/samsung/2.6.35/arch/arm/boot/zImage temp/zImage
