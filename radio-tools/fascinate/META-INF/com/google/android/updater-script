@@ -1,0 +1,17 @@
+ui_print("Welcome to CyanogenMod-7.0.0-Fascinate");
+
+# START: format radio
+show_progress(0.500000, 5);
+ui_print("Formating radio partition...");
+format("yaffs2", "MTD", "radio");
+# END: format radio
+
+# START: flash radio
+show_progress(0.500000, 5);
+ui_print("Flashing radio image...");
+assert(package_extract_file("modem.bin", "/tmp/modem.bin"),
+       write_raw_image("/tmp/modem.bin", "radio"),
+       delete("/tmp/modem.bin"));
+# END: flash radio
+
+ui_print("Done.");
